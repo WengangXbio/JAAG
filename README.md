@@ -15,6 +15,7 @@ R >= 3.6.0
 ## Getting start
 ### 0. Data Preparation
 ref.fa : genome reference sequences (.fa)
+
 movieX.flnc.fa: Full Length Non-Chimeric (FLNC) read file (.fa)
 
 ### 1. ISO-seq-based
@@ -26,13 +27,20 @@ samtools sort movieX.sam > movieX.sort.bam
 samtools view -h -o movieX.sort.sam movieX.sort.bam
 ```
 #### ii. FLNC reads collapse, merge, and filtering
+##### Collapse multiple transcriptional reads into single transcript model
 ```
 python tama/tama_collapse.py -s movieX.sort.sam -f ref.fa -p prefix -x capped -a 100 -z 100 -d merge_dup -sj sj_priority -sjt 20 -lde 2 -log log_off
+```
+##### Merge multiple transcriptomes into single annotation (If Iso-Seq data has multiple runs)
+```
 python tama/tama_merge.py -f merge.txt -p merged_annos
-#TAMA Read Support (https://github.com/GenomeRIK/tama/wiki/TAMA-GO:-Read-Support)   see TXT.format
-python ~/WGsoftware/tama/tama_go/read_support/tama_read_support_levels.py -f read_support_filelist.txt -o merge -m _merge.txt
-#TAMA filter_out (https://github.com/GenomeRIK/tama/wiki/TAMA-GO:-Transcript-Filtering)   see TXT.format
-python ~/WGsoftware/tama/tama_go/filter_transcript_models/tama_remove_polya_models_levels.py -b merged_annos.bed -f polya_filelist.txt -r merge_read_support.txt -o prefix -k keep_multi
+```
+##### Counting read support and filtering
+```
+python tama/tama_read_support_levels.py -f read_support_filelist.txt -o merge -m merge.txt
+python tama/tama_remove_polya_models_levels.py -b merged_annos.bed -f polya_filelist.txt -r merge_read_support.txt -o prefix -k keep_multi
+```
+
 #TAMA Read Support for polyA-removed transcripts
 python ~/WGsoftware/tama/tama_go/read_support/tama_read_support_levels.py -f read_support_rm_polya.txt -o rm_polya -m merge_rmpolya_polya_report.txt -mt filter
 #TAMA Transcript Filtering (reads_support)
