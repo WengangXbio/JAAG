@@ -120,9 +120,13 @@ prefix_2  prefix_2_trans_read.bed  trans_read
 python tama/tama_remove_single_read_models_levels.py -b merge_rmpolya.bed -r rm_polya_read_support.txt -l transcript -k keep_multi -o merge_rmpolya_rmsingle
 ```
 -b Annotation bed file which is obtained from polyA filtering step
+
 -r Read support file from recount read support step after polyA filtering
+
 -o Output prefix (required)
+
 -l [gene transcript] Level of removal
+
 -k [keep_multi remove_multi] Keep or remove multi-exon models if the transcript with only one read support.
 
 
