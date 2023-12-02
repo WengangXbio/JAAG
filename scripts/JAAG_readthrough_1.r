@@ -368,7 +368,9 @@ readthrough_stat3=stat(output3)
 output3_rm=output3[- which(readthrough_stat3[,2]>=readthrough_stat3[,4])]
 rename3 <- clean_up(output3_rm)
 rename_readthrough3 <- clean_up_readthrough(output3_rm)
+if(length(rename3)!=0){
 renames <- rbind(rename,rename3)
 rename_readthroughs <- rbind(rename_readthrough,rename_readthrough3)
+}
 write.table(renames,'merged_rmpolya_rmsingle_coding.readthrough.reassign',quote=FALSE,sep="\t",row.names=FALSE,col.names=FALSE)
 write.table(rename_readthroughs,'merged_rmpolya_rmsingle_coding.readthrough.collection',quote=FALSE,sep="\t",row.names=FALSE,col.names=FALSE)
