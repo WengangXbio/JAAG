@@ -34,3 +34,5 @@ cat ./gtf/${sample_name}.RM.N.gtf.name ./gtf/${sample_name}.RM.P.gtf.name ./gtf/
 awk -f ./scripts/vlookup2.awk  ./gtf/${sample_name}.RM.gtf.name ./gtf/${sample_name}.gtf |grep 'KP'|awk -F'\t' 'BEGIN{OFS="\t"} {print $1,$2,$3,$4,$5,$6,$7,$8,$9}' > ./gtf/${sample_name}.JAAG.gtf
 rm ./gtf/*.bed6 ./gtf/*name temp/${sample_name}.* 
 done
+l gtf/*.JAAG.gtf |awk -F' ' '{print $9}' > gtf/gtf.list
+stringtie --merge -o gtf/merge.candi.gtf gtf/gtf.list
