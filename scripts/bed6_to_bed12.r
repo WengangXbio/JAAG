@@ -30,4 +30,4 @@ uey=data.frame(V1=genegtfsub[1,1],V2=min(genegtfsub[,2]),V3=max(genegtfsub[,3]),
 fwe_bed=rbind(fwe_bed,uey)
 }
 fwe_bed=fwe_bed[-1,]
-write.table(fwe_bed,args[12],quote=FALSE,sep="\t",row.names=F,col.names=F)
+write.table(fwe_bed,args[2],quote=FALSE,sep="\t",row.names=F,col.names=F)
