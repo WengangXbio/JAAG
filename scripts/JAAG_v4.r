@@ -192,7 +192,6 @@ new_merge_matrix1=left_join(new_merge_matrix1,rmfu,by='id')
 new_merge_matrix1[-which(new_merge_matrix1[,3]==1),-3]
 }
 
-.libPaths("~/schoenebeck_group/WENGANG/R_lib/")
 library(splitstackshape)
 library(dplyr)
 library(data.table)
