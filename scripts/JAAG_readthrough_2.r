@@ -1,4 +1,3 @@
-.libPaths('~/schoenebeck_group/WENGANG/R_lib/')
 library(splitstackshape)
 library(dplyr)
 library(TCseq)
